@@ -2,6 +2,12 @@
 
 Given a Spotify track, when was it added to your playlists?
 
+## Dependencies
+
+- Bash
+- Curl
+- jq
+
 ## Plan
 
 ### Sub-problemer

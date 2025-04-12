@@ -173,6 +173,8 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
-## env 
-secret.yaml
+## api keys 
+CLIENT_ID
+CLIENT_SECRET
+
 
