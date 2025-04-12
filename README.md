@@ -7,12 +7,13 @@ Given a Spotify track, when was it added to your playlists?
 - Bash
 - Curl
 - jq
+- Python3
 
 ## Plan
 
 ### Sub-problemer
 
-- [ ] Må deale med API-keys
+- [x] Må deale med API-keys
 - [ ] Finne track id (nødvendig? Kan bruke navn istedet??)
 - [ ] Finne alle playlists
 - [ ] Finne hvilke playlists som inneholder tracken
