@@ -19,7 +19,7 @@ Given a Spotify track, when was it added to your playlists?
 ### Dotenv setup
 
 ```
-CLIENT_ID=< your client id>
+CLIENT_ID=<your client id>
 CLIENT_SECRET=<your client secret>
 ```
 
@@ -34,15 +34,7 @@ CLIENT_SECRET=<your client secret>
 - [x] Finne når sangen ble lagt til i gven playlists
 - [x] Presentere resultatene til brukeren
 - [ ] La brukeren gi en dato
-- [ ] Finne alle playlists som fikk en ny track den datoen
-
-### Tech
-
-- Node for å interface mot APIet?
-- Python for å prosessere API-dataen clientside?
-- Begynne med å bare printe resultatene til CLI?
-- Se på å bruke Redis for å lagre playlistesene? (obv overkill men kanskje kewl)
-- Se på å bruke mySQL for å optimalisere network IO? (-> caching på disk)
+- [x] Finne alle playlists som fikk en ny track den datoen
 
 ### Nice to haves
 
