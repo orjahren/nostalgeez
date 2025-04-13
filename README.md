@@ -19,9 +19,11 @@ Given a Spotify track, when was it added to your playlists?
 - [x] Må deale med API-keys
 - [ ] Finne track id (nødvendig? Kan bruke navn istedet??)
 - [x] Finne alle playlists
-- [ ] Finne hvilke playlists som inneholder tracken
-- [ ] Finne når sangen ble lagt til i gven playlists
-- [ ] Presentere resultatene til brukeren
+- [x] Finne hvilke playlists som inneholder tracken
+- [x] Finne når sangen ble lagt til i gven playlists
+- [x] Presentere resultatene til brukeren
+- [ ] La brukeren gi en dato
+- [ ] Finne alle playlists som fikk en ny track den datoen
 
 ### Tech
 
