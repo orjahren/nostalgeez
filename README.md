@@ -27,10 +27,14 @@ TODO: Write usage documentation
 
 ### Dotenv setup
 
+You must have a file [./.env](./.env) and it must be like this:
+
 ```
 CLIENT_ID=<your client id>
 CLIENT_SECRET=<your client secret>
 ```
+
+It is only ever accessed in [config.py](./config.py).
 
 ## TODOs
 
@@ -44,3 +48,5 @@ CLIENT_SECRET=<your client secret>
 - [x] Finne alle playlists som fikk en ny track den datoen
 - [ ] Add some optional slack for date check
 - [ ] Unit testing?
+- [ ] Read arguments from CLI insted of input loop?
+- [ ] Should add an auth check early in the pipeline.

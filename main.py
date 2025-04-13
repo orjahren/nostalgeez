@@ -12,21 +12,19 @@ def print_menu():
     for i, (name, desc, _) in enumerate(modes):
         print(f"({i + 1}) {name} {desc and f"- {desc}"}")
 
+    return True
 
-def main():
+
+def menu_loop():
     print("*** Nostalgeez ***")
 
-    mode = None
-    while mode != len(modes):
-        print_menu()
-        # TODO: Dont crash on wrong format
-        mode = int(input("> "))
+    # TODO: Dont crash on wrong input format
+    while (mode := (int(input("> ")) if (print_menu()) else 0)) < len(modes):
         modes[mode-1][2]()
 
 
-# TODO: Add some optional slack? e.g. 3 days slack
 def by_date() -> None:
-
+    # TODO: Add some optional slack? e.g. 3 days slack
     print("Will do by date")
 
     test_date = datetime.datetime.now()
@@ -96,4 +94,5 @@ if __name__ == "__main__":
     # main()
     # by_id()
     # test()
-    by_date()
+    # by_date()
+    menu_loop()
