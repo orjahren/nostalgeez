@@ -50,3 +50,9 @@ It is only ever accessed in [config.py](./config.py).
 - [ ] Unit testing?
 - [ ] Read arguments from CLI insted of input loop?
 - [ ] Should add an auth check early in the pipeline.
+
+## Further work
+
+The provided code will fetch all your playlists and their songs. You can use this as a base for all sorts of analysis outside of what i have done.
+
+Feel free to fork the project.
