@@ -60,9 +60,9 @@ def fetch_my_playlists() -> object:
     })
 
     # TODO: Error handling
-    assert r.ok, f"Error fetching my playlists -> status {r}, {r.json()["error"]["message"]}"
+    assert r.ok, f"Error fetching my playlists -> status {r}, {r.json()["error"]["message"]} (you may need to reauthenticate in the browser)"
 
-    print(f"*** Fetched playlists {r.json()} ***", file=sys.stderr)
+    print(f"*** Fetched playlists ***", file=sys.stderr)
 
     return r.json()
 
