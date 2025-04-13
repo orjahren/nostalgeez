@@ -10,6 +10,7 @@ Given a Spotify track, when was it added to your playlists?
   - dotenv
   - flask
   - requests_oauthlib
+  - joblib
 
 ## Plan
 

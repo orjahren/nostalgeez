@@ -2,16 +2,18 @@ import json
 import requests
 import sys
 from functools import lru_cache
+from joblib import Memory
 
 from config import get_api_client
 from user_token import get_user_token
 
 
+memory = Memory("/tmp/nostalgeez-cache", verbose=0)
+
 BASE_URL = f"https://api.spotify.com/v1"
 
 
 # TODO: Invalidate cache based on token validity
-@lru_cache
 def _fetch_access_token():
     CLIENT_ID, CLIENT_SECRET = get_api_client()
     assert CLIENT_ID and CLIENT_SECRET, "Dotenv config not properly laoded."
@@ -30,13 +32,13 @@ def _fetch_access_token():
     return res.json()
 
 
-@lru_cache
+@memory.cache
 def get_access_token():
     token_response = _fetch_access_token()
     return token_response["access_token"]
 
 
-@lru_cache
+@memory.cache
 def fetch_artist(artist_id: str) -> object:
     access_token = get_access_token()
     print(f"Fetching artist {artist_id}", file=sys.stderr)
@@ -52,7 +54,7 @@ def fetch_artist(artist_id: str) -> object:
     return r.json()
 
 
-@lru_cache
+@memory.cache
 def fetch_my_playlists(get_all: bool = True) -> object:
     access_token = get_user_token()
     endpoint = "/me/playlists"
@@ -98,7 +100,7 @@ def fetch_my_playlists(get_all: bool = True) -> object:
     return flat_playlists
 
 
-@lru_cache
+@memory.cache
 def fetch_tracks_by_url(url: str):
     user_token = get_user_token()
     print(f"Fetching tracks for playlist", file=sys.stderr)
