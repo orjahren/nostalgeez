@@ -1,10 +1,10 @@
-modes = [("By date", "Provide a date and get what songs you added on that date"),
-         ("By ID", "Given a track ID, find when you added it to what lists"),
-         ("Exit", "")]
+modes = [("By date", "Provide a date and get what songs you added on that date", lambda: by_date()),
+         ("By ID", "Given a track ID, find when you added it to what lists", lambda: by_id()),
+         ("Exit", "", lambda: None)]
 
 
 def print_menu():
-    for i, (name, desc) in enumerate(modes):
+    for i, (name, desc, _) in enumerate(modes):
         print(f"({i + 1}) {name} {desc and f"- {desc}"}")
 
 
@@ -16,14 +16,7 @@ def main():
         print_menu()
         # TODO: Dont crash on wrong format
         mode = int(input("> "))
-
-        match mode:
-            case 1:
-                by_date()
-            case 2:
-                by_id()
-            case 3:
-                pass
+        modes[mode-1][2]()
 
 
 def by_date(date: str) -> None:
