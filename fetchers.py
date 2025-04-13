@@ -115,7 +115,7 @@ def fetch_tracks_by_url(url: str):
     return r.json()
 
 
-# @memory.cache
+@memory.cache
 def fetch_track_by_id(track_id: str):
     access_token = get_access_token()
     print(f"Fetching track by id {track_id}", file=sys.stderr)
