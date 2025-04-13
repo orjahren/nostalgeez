@@ -1,3 +1,4 @@
+import json
 import requests
 import sys
 from functools import lru_cache
@@ -52,7 +53,7 @@ def fetch_artist(artist_id: str) -> object:
 
 
 @lru_cache
-def fetch_my_playlists() -> object:
+def fetch_my_playlists(get_all: bool = True) -> object:
     access_token = get_user_token()
     endpoint = "/me/playlists"
     r = requests.get(BASE_URL + endpoint, headers={
@@ -62,9 +63,39 @@ def fetch_my_playlists() -> object:
     # TODO: Error handling
     assert r.ok, f"Error fetching my playlists -> status {r}, {r.json()["error"]["message"]} (you may need to reauthenticate in the browser)"
 
-    print(f"*** Fetched playlists ***", file=sys.stderr)
+    # TODO: This should be heavily refactored.
+    resp = r.json()
 
-    return r.json()
+    if not get_all:
+        print("Will not fetch all playlists.")
+        return resp["items"]
+
+    batches = []
+    batches.append(resp["items"])
+
+    while resp["next"]:
+
+        print("*** Fetching", resp["next"])
+        r = requests.get(resp["next"], headers={
+            "Authorization": f"Bearer {access_token}"
+        })
+        resp = r.json()
+        batches.append(resp["items"])
+
+    print(f"*** Fetched all playlists ***", file=sys.stderr)
+
+    print(json.dumps(resp, indent=4))
+    print(r)
+
+    flat_playlists = [
+        playlist
+        for batch in batches
+        for playlist in batch
+    ]
+
+    assert len(flat_playlists) == resp["total"], "Bug in flattening playlists."
+
+    return flat_playlists
 
 
 if __name__ == "__main__":
