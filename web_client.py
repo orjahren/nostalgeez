@@ -8,7 +8,6 @@ import json
 from config import get_api_client
 from user_token import set_user_token
 
-user_token = "Uninitizalized"
 
 app = Flask(__name__)
 
@@ -47,10 +46,8 @@ def callback():
                             'redirect_uri': REDIRECT_URI
                         })
 
-    print("*** AUTH: Setting global user token")
-    user_token = res.json()["access_token"]
+    print("*** AUTH: Setting global user token on callback")
     set_user_token(res.json())
-    print("*** Set to ", user_token)
 
     return json.dumps(res.json())
 

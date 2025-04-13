@@ -10,5 +10,6 @@ def set_user_token(response):
 
 
 def get_user_token():
+    # TODO: Should assert user has auth with valid token
     with open(USER_TOKEN_FILE_NAME, "r") as f:
         return f.read()
