@@ -2,7 +2,7 @@ import json
 import requests
 import sys
 from functools import lru_cache
-from joblib import Memory
+from joblib import Memory, expires_after
 
 from config import get_api_client
 from user_token import get_user_token
@@ -13,7 +13,7 @@ memory = Memory("/tmp/nostalgeez-cache", verbose=0)
 BASE_URL = f"https://api.spotify.com/v1"
 
 
-# TODO: Invalidate cache based on token validity
+@memory.cache(cache_validation_callback=expires_after(seconds=3600))
 def _fetch_access_token():
     CLIENT_ID, CLIENT_SECRET = get_api_client()
     assert CLIENT_ID and CLIENT_SECRET, "Dotenv config not properly laoded."
@@ -32,7 +32,6 @@ def _fetch_access_token():
     return res.json()
 
 
-@memory.cache
 def get_access_token():
     token_response = _fetch_access_token()
     return token_response["access_token"]
@@ -112,6 +111,23 @@ def fetch_tracks_by_url(url: str):
 
     # print(r.json())
     print(f"*** Fetched playlist tracks ***", file=sys.stderr)
+
+    return r.json()
+
+
+# @memory.cache
+def fetch_track_by_id(track_id: str):
+    access_token = get_access_token()
+    print(f"Fetching track by id {track_id}", file=sys.stderr)
+    url = BASE_URL + "/tracks/" + track_id
+    r = requests.get(url, headers={
+        "Authorization": f"Bearer {access_token}"
+    })
+    # TODO: Error handling
+    assert r.ok, f"Error fetching track -> status {r}, {r.json()["error"]["message"]}"
+
+    # print(r.json())
+    print(f"*** Fetched track ***", file=sys.stderr)
 
     return r.json()
 

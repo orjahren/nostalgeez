@@ -1,4 +1,5 @@
 from playlists import get_playlists_by_track_id
+from tracks import get_track_name_by_id
 
 
 modes = [("By date", "Provide a date and get what songs you added on that date", lambda: by_date()),
@@ -22,6 +23,7 @@ def main():
         modes[mode-1][2]()
 
 
+# TODO: Implement
 def by_date() -> None:
     print("Will do by date")
 
@@ -38,6 +40,10 @@ def by_id() -> None:
     # track_id = input("What track id?")
     track_id = test_track_id
     print("OK, track id", track_id)
+
+    track_name = get_track_name_by_id(track_id)
+
+    print("That is", track_name)
 
     playlists = get_playlists_by_track_id(track_id)
     print("Res:", len(playlists), "playlists")
