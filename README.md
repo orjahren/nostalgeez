@@ -50,6 +50,7 @@ It is only ever accessed in [config.py](./config.py).
 - [ ] Unit testing?
 - [ ] Read arguments from CLI insted of input loop?
 - [ ] Should add an auth check early in the pipeline.
+- [ ] Må ta høyde for hvem som addet sangen? Hva skjer hvis man følger en playlist og får at man liksom addet noe selv når noen andre gjorde det?
 
 ## Further work
 
