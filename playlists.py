@@ -1,5 +1,5 @@
 import json
-from fetchers import fetch_my_playlists
+from fetchers import fetch_my_playlists, fetch_tracks_by_url
 
 # TODO: Typing of playlists
 
@@ -10,6 +10,12 @@ def print_playlist_names(playlists):
         print(playlist["name"])
 
         print("URL for å fetche tracks:", playlist["tracks"])
+
+        tracks = fetch_tracks_by_url(playlist["tracks"]["href"])
+        print(tracks)
+        print("*****")
+        print(tracks["items"][0])
+        return
 
 
 if __name__ == "__main__":

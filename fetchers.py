@@ -98,6 +98,21 @@ def fetch_my_playlists(get_all: bool = True) -> object:
     return flat_playlists
 
 
+def fetch_tracks_by_url(url: str):
+    user_token = get_user_token()
+    print(f"Fetching tracks for playlist", file=sys.stderr)
+    r = requests.get(url, headers={
+        "Authorization": f"Bearer {user_token}"
+    })
+    # TODO: Error handling
+    assert r.ok, f"Error fetching tracks -> status {r}"
+
+    # print(r.json())
+    print(f"*** Fetched playlist tracks ***", file=sys.stderr)
+
+    return r.json()
+
+
 if __name__ == "__main__":
     access_token = get_access_token()
     print(access_token)
