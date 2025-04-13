@@ -1,10 +1,8 @@
-import json
 import requests
 import sys
-import os
-from dotenv import load_dotenv
 from functools import lru_cache
-from os.path import join, dirname
+
+from config import get_api_client
 
 
 BASE_URL = f"https://api.spotify.com/v1"
@@ -13,10 +11,7 @@ BASE_URL = f"https://api.spotify.com/v1"
 # TODO: Invalidate cache based on token validity
 @lru_cache
 def _fetch_access_token():
-    dotenv_path = join(dirname(__file__), '.env')
-    load_dotenv(dotenv_path)
-    CLIENT_ID = os.environ.get("CLIENT_ID")
-    CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
+    CLIENT_ID, CLIENT_SECRET = get_api_client()
     assert CLIENT_ID and CLIENT_SECRET, "Dotenv config not properly laoded."
 
     print("Fetching access token from net", file=sys.stderr)
@@ -51,6 +46,22 @@ def fetch_artist(artist_id: str) -> object:
     assert r.ok, f"Error fetching artist {artist_id} -> status {r}"
 
     print(f"*** Fetched artist {r.json()["name"]} ***", file=sys.stderr)
+
+    return r.json()
+
+
+@lru_cache
+def fetch_my_playlists() -> object:
+    access_token = get_access_token()
+    endpoint = "/me/playlists"
+    r = requests.get(BASE_URL + endpoint, headers={
+        "Authorization": f"Bearer {access_token}"
+    })
+
+    # TODO: Error handling
+    assert r.ok, f"Error fetching my playlists -> status {r}, {r.json()["error"]["message"]}"
+
+    print(f"*** Fetched playlists {r.json()} ***", file=sys.stderr)
 
     return r.json()
 

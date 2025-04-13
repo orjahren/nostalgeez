@@ -8,6 +8,8 @@ Given a Spotify track, when was it added to your playlists?
   - requests
   - certifi
   - dotenv
+  - flask
+  - requests_oauthlib
 
 ## Plan
 

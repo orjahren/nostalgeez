@@ -174,7 +174,6 @@ cython_debug/
 .pypirc
 
 ## api keys 
-CLIENT_ID
-CLIENT_SECRET
+user_token.txt
 
 
