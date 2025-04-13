@@ -1,7 +1,11 @@
 import json
 import sys
-from typing import List
+from typing import List, Optional
+
+from joblib import Memory
 from fetchers import fetch_my_playlists, fetch_tracks_by_url
+
+memory = Memory("/tmp/nostalgeez-cache", verbose=0)
 
 # TODO: Typing of playlists
 type Track = any
@@ -73,6 +77,33 @@ def print_playlist_names(playlists):
     # print(json.dumps(all_tracks[0], indent=4))
     # print((all_tracks[0]["track"]["name"]))
     print(len(get_unique_tracks(all_tracks)), "unique tracks")
+
+
+@memory.cache
+def playlist_contains_track(playlist, track_id) -> Optional[Track]:
+    # print(playlist)
+
+    tracks = fetch_tracks_by_url(playlist["tracks"]["href"])
+    # print(tracks)
+    for track in tracks["items"]:
+        # print(track)
+        if track["track"]:
+            if track["track"]["id"] == track_id:
+                return track
+    return None
+
+
+@memory.cache
+def get_playlists_by_track_id(track_id: str) -> List[Track]:
+    my_playlists = fetch_my_playlists()
+    res = []
+    for playlist in my_playlists:
+        if (track := playlist_contains_track(playlist, track_id)):
+            # print(track)
+            # print(track["added_at"])
+            res.append((playlist, track["added_at"]))
+
+    return res
 
 
 if __name__ == "__main__":
