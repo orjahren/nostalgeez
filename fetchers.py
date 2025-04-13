@@ -98,6 +98,7 @@ def fetch_my_playlists(get_all: bool = True) -> object:
     return flat_playlists
 
 
+@lru_cache
 def fetch_tracks_by_url(url: str):
     user_token = get_user_token()
     print(f"Fetching tracks for playlist", file=sys.stderr)

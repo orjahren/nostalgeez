@@ -14,8 +14,10 @@ def print_playlist_names(playlists):
         tracks = fetch_tracks_by_url(playlist["tracks"]["href"])
         print(tracks)
         print("*****")
-        print(tracks["items"][0])
-        return
+
+        for track in tracks["items"]:
+            print(json.dumps(track, indent=4))
+            return
 
 
 if __name__ == "__main__":
