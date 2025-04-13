@@ -1,3 +1,4 @@
+import json
 import requests
 import sys
 import os
@@ -39,14 +40,17 @@ def get_access_token():
 
 
 @lru_cache
-def fetch_artist(artist_id: str, access_token: str) -> object:
-    print(f"Fetching artist {artist_id}")
+def fetch_artist(artist_id: str) -> object:
+    access_token = get_access_token()
+    print(f"Fetching artist {artist_id}", file=sys.stderr)
     endpoint = f"/artists/{artist_id}"
     r = requests.get(BASE_URL + endpoint, headers={
         "Authorization": f"Bearer {access_token}"
     })
     # TODO: Error handling
     assert r.status_code == 200, f"Error fetching artist {artist_id} -> status {r}"
+
+    print(f"*** Fetched artist {r.json()["name"]} ***", file=sys.stderr)
 
     return r.json()
 
@@ -60,8 +64,8 @@ if __name__ == "__main__":
     access_token = get_access_token()
     print(access_token)
     access_token = get_access_token()
-    test_artist = "4Z8W4fKeB5YxbusRsdQVPb"
-    res = fetch_artist(test_artist, access_token)
+    test_artist = "4Z8W4fKeB5YxbusRsdQVPb"  # Radiohead
+    res = fetch_artist(test_artist)
     print(res)
-    res = fetch_artist(test_artist, access_token)
+    res = fetch_artist(test_artist)
     print(res)
