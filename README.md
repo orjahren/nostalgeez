@@ -11,6 +11,17 @@ Given a Spotify track, when was it added to your playlists?
   - flask
   - requests_oauthlib
   - joblib
+- Spotiy API application
+  - Claim: Web API
+  - Callback URL must match whatever is in [web_client.py](./web_client.py)
+    - Or get a user token some other way and write it to the path specified in [user_token.py](./user_token.py)
+
+### Dotenv setup
+
+```
+CLIENT_ID=< your client id>
+CLIENT_SECRET=<your client secret>
+```
 
 ## Plan
 
