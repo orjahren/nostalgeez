@@ -29,7 +29,7 @@ def _fetch_access_token():
             "Content-Type": "application/x-www-form-urlencoded"
         })
     # TODO: Error handling
-    assert res.status_code == 200, "Error fetching access token"
+    assert res.ok, "Error fetching access token"
     return res.json()
 
 
@@ -48,7 +48,7 @@ def fetch_artist(artist_id: str) -> object:
         "Authorization": f"Bearer {access_token}"
     })
     # TODO: Error handling
-    assert r.status_code == 200, f"Error fetching artist {artist_id} -> status {r}"
+    assert r.ok, f"Error fetching artist {artist_id} -> status {r}"
 
     print(f"*** Fetched artist {r.json()["name"]} ***", file=sys.stderr)
 
