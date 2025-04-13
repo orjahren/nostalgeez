@@ -3,6 +3,7 @@ import sys
 from functools import lru_cache
 
 from config import get_api_client
+from user_token import get_user_token
 
 
 BASE_URL = f"https://api.spotify.com/v1"
@@ -52,7 +53,7 @@ def fetch_artist(artist_id: str) -> object:
 
 @lru_cache
 def fetch_my_playlists() -> object:
-    access_token = get_access_token()
+    access_token = get_user_token()
     endpoint = "/me/playlists"
     r = requests.get(BASE_URL + endpoint, headers={
         "Authorization": f"Bearer {access_token}"
