@@ -12,6 +12,7 @@ user_token = "Uninitizalized"
 
 app = Flask(__name__)
 
+# TODO: Should be in config file.
 AUTH_URL = 'https://accounts.spotify.com/authorize'
 TOKEN_URL = 'https://accounts.spotify.com/api/token'
 REDIRECT_URI = 'http://127.0.0.1:3000/callback'
