@@ -25,9 +25,13 @@ def main():
 
 # TODO: Implement
 def by_date() -> None:
+
     print("Will do by date")
 
-    date = input("On what date? Use format YYYY-MM-DD")
+    test_date = "13.04"
+
+    # date = input("On what date? Use format DD-MM")
+    date = test_date
     print("OK, date", date)
     pass
 
@@ -54,6 +58,25 @@ def by_id() -> None:
     pass
 
 
+def test():
+    tracks = ["3UybjBFuoeBzdfKuovcduL",
+              "4KuUMa7zmUzVWrDyzf2eaL", "203SOw9ae8G0bDgCeyijz6"]
+    for track_id in tracks:
+        print("\n********\n")
+        print("OK, track id", track_id)
+
+        track_name = get_track_name_by_id(track_id)
+
+        print("That is", track_name)
+
+        playlists = get_playlists_by_track_id(track_id)
+        print("Res:", len(playlists), "playlists")
+
+        for i, (playlist, added_at) in enumerate(playlists):
+            print(f"[{i}] {playlist["name"]} -> {added_at}")
+
+
 if __name__ == "__main__":
     # main()
-    by_id()
+    # by_id()
+    test()
