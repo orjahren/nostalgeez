@@ -1,4 +1,5 @@
-from playlists import get_playlists_by_track_id
+import datetime
+from playlists import get_filtered_playlists_by_date, get_playlists_by_track_id
 from tracks import get_track_name_by_id
 
 
@@ -23,16 +24,31 @@ def main():
         modes[mode-1][2]()
 
 
-# TODO: Implement
+# TODO: Add some optional slack? e.g. 3 days slack
 def by_date() -> None:
 
     print("Will do by date")
 
-    test_date = "13.04"
+    test_date = datetime.datetime.now()
 
+    print(test_date)
     # date = input("On what date? Use format DD-MM")
     date = test_date
+
+    # Truncate to 0 to get cache gains
+    date = date.replace(
+        hour=0, minute=0, second=0, microsecond=0) + datetime.timedelta(hours=1)
     print("OK, date", date)
+
+    print("\n\n")
+
+    playlists = get_filtered_playlists_by_date(date)
+    print(
+        f"On {date.day}.{date.month}, {len(playlists)} songs were added. They are:")
+    for playlist, track in playlists:
+        print(
+            f"{track["track"]["name"]} -> {playlist["name"]} ({track["added_at"]}")
+
     pass
 
 
@@ -79,4 +95,5 @@ def test():
 if __name__ == "__main__":
     # main()
     # by_id()
-    test()
+    # test()
+    by_date()

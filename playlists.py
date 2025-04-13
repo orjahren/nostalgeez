@@ -1,8 +1,12 @@
+import datetime
+from dateutil import parser
 import json
 import sys
 from typing import List, Optional
 
+import dateutil.parser
 from joblib import Memory
+from date import dates_are_same_of_year
 from fetchers import fetch_my_playlists, fetch_tracks_by_url
 
 memory = Memory("/tmp/nostalgeez-cache", verbose=0)
@@ -94,7 +98,7 @@ def playlist_contains_track(playlist, track_id) -> Optional[Track]:
 
 
 @memory.cache
-def get_playlists_by_track_id(track_id: str) -> List[Track]:
+def get_playlists_by_track_id(track_id: str) -> List[Playlist]:
     my_playlists = fetch_my_playlists()
     res = []
     for playlist in my_playlists:
@@ -103,6 +107,29 @@ def get_playlists_by_track_id(track_id: str) -> List[Track]:
             # print(track["added_at"])
             res.append((playlist, track["added_at"]))
 
+    return res
+
+
+@memory.cache
+def playlist_got_track_on_date(playlist: Playlist,  date: datetime.date) -> Optional[Track]:
+    # print(playlist)
+
+    tracks = fetch_tracks_by_url(playlist["tracks"]["href"])
+    # print(tracks)
+    # exit(1)
+    for track in tracks["items"]:
+        parsed_add_date = parser.parse(track["added_at"])
+        if dates_are_same_of_year(parsed_add_date, date):
+            return track
+    return None
+
+
+def get_filtered_playlists_by_date(date: datetime.date) -> List[Playlist]:
+    my_playlists = fetch_my_playlists()
+    res = []
+    for playlist in my_playlists:
+        if (track := playlist_got_track_on_date(playlist, date)):
+            res.append((playlist, track))
     return res
 
 
