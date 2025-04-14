@@ -111,25 +111,26 @@ def get_playlists_by_track_id(track_id: str) -> List[Playlist]:
 
 
 @memory.cache
-def playlist_got_track_on_date(playlist: Playlist,  date: datetime.date) -> Optional[Track]:
+def playlist_got_track_on_date(playlist: Playlist,  date: datetime.date) -> List[Track]:
     # print(playlist)
 
     tracks = fetch_tracks_by_url(playlist["tracks"]["href"])
     # print(tracks)
     # exit(1)
+    res = []
     for track in tracks["items"]:
         parsed_add_date = parser.parse(track["added_at"])
         if dates_are_same_of_year(parsed_add_date, date):
-            return track
-    return None
+            res.append(track)
+    return res
 
 
 def get_filtered_playlists_by_date(date: datetime.date) -> List[Playlist]:
     my_playlists = fetch_my_playlists()
     res = []
     for playlist in my_playlists:
-        if (track := playlist_got_track_on_date(playlist, date)):
-            res.append((playlist, track))
+        if (tracks := playlist_got_track_on_date(playlist, date)):
+            res.extend([(playlist, track) for track in tracks])
     return res
 
 
