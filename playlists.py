@@ -111,7 +111,7 @@ def get_playlists_by_track_id(track_id: str) -> List[Playlist]:
 
 
 @memory.cache
-def playlist_got_track_on_date(playlist: Playlist,  date: datetime.date) -> List[Track]:
+def tracks_playlist_got_on_date(playlist: Playlist,  date: datetime.date) -> List[Track]:
     # print(playlist)
 
     tracks = fetch_tracks_by_url(playlist["tracks"]["href"])
@@ -129,9 +129,11 @@ def get_filtered_playlists_by_date(date: datetime.date) -> List[Playlist]:
     my_playlists = fetch_my_playlists()
     res = []
     for playlist in my_playlists:
-        if (tracks := playlist_got_track_on_date(playlist, date)):
-            res.extend([(playlist, track) for track in tracks])
-    return res
+        for track in tracks_playlist_got_on_date(playlist, date):
+            res.append((playlist, track))
+
+    # Sort by added date, most recent first.
+    return sorted(res, key=lambda tup: tup[1]["added_at"], reverse=True)
 
 
 if __name__ == "__main__":

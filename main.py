@@ -45,9 +45,8 @@ def by_date() -> None:
         f"On {date.day}.{date.month}, {len(playlists)} songs were added. They are:")
     for playlist, track in playlists:
         print(
-            f"{track["track"]["name"]} -> {playlist["name"]} ({track["added_at"]})")
-
-    pass
+            f"\t{track["track"]["name"]} -> {playlist["name"]} ({track["added_at"]})")
+    print("\n")
 
 
 def by_id() -> None:
