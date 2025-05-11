@@ -9,7 +9,10 @@ $ python main.py
 (2) By ID - Given a track ID, find when you added it to what lists
 (3) Exit
 > 1
+Will do by date
 OK, date 2025-05-11 01:00:00
+
+
 
 On 11.5, 5 songs were added. They are:
 	Dust - feat. Astrid S -> This Is What You Came For (feat. Rihanna) – Calvin Harris (2020-05-11T17:45:39Z)
@@ -17,6 +20,26 @@ On 11.5, 5 songs were added. They are:
 	Friends (feat. Bon Iver) -> This Is What You Came For (feat. Rihanna) – Calvin Harris (2020-05-11T06:24:47Z)
 	Wojtek 2018 -> rt 2,6M (2018-05-11T19:30:47Z)
 	Jumanji 2019 -> rt 2,6M (2018-05-11T19:27:13Z)
+
+
+(1) By date - Provide a date and get what songs you added on that date
+(2) By ID - Given a track ID, find when you added it to what lists
+(3) Exit
+> 2
+Will do by id
+What track id? $0FvFAct92X30IlGGlk6Bck
+OK, track id 0FvFAct92X30IlGGlk6Bck
+That is Sædfuck
+Res: 2 playlists
+[1] Sædfuck -> 2023-10-11T11:05:23Z
+[2] My Bad -> 2023-08-04T08:11:44Z
+
+
+
+(1) By date - Provide a date and get what songs you added on that date
+(2) By ID - Given a track ID, find when you added it to what lists
+(3) Exit
+>
 ```
 
 ## Functionality
