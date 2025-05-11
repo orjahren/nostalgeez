@@ -13,7 +13,7 @@ TODO: Write usage documentation
 
 ## Dependencies
 
-- Python3
+- Python3 (`pip install -r requirements.txt`)
   - requests (API operations)
   - certifi (API operations)
   - dotenv (handle API client secrets)
