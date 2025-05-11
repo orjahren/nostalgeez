@@ -36,22 +36,31 @@ CLIENT_SECRET=<your client secret>
 
 It is only ever accessed in [config.py](./config.py).
 
-## TODOs
+## Known weaknesses / TODOs
 
-- [x] Må deale med API-keys
-- [ ] Finne track id (nødvendig? Kan bruke navn istedet??)
-- [x] Finne alle playlists
-- [x] Finne hvilke playlists som inneholder tracken
-- [x] Finne når sangen ble lagt til i gven playlists
-- [x] Presentere resultatene til brukeren
-- [ ] La brukeren gi en dato
-- [x] Finne alle playlists som fikk en ny track den datoen
-- [ ] Add some optional slack for date check
-- [ ] Unit testing?
-- [ ] Read arguments from CLI insted of input loop?
+### User oriented
+
 - [ ] Should add an auth check early in the pipeline.
-- [ ] Må ta høyde for hvem som addet sangen? Hva skjer hvis man følger en playlist og får at man liksom addet noe selv når noen andre gjorde det?
-- [ ] Støtte høytider? E.g. "disse sangene hører du på i [jul, påske, sommer]" etc
+  - Check for auth and fail gracefully. There will currently be a hard crash
+    upon invalid auth.
+- [ ] Allow the user to find track id by song name.
+- [ ] Allow the user to input a date.
+  - Now it will always assume the current date.
+- [ ] Add some optional slack for date check
+  - While you add a song on date `n`, you typically listen to it on date `n+k`.
+- [ ] Should consider that the song was added by the user. Relevant for
+      collaborative playlists.
+- [ ] Support for specific seasons.
+  - E.g. "these are your most played [easter, summer, xmas] songs"
+
+### Tech oriented
+
+- [ ] Unit testing
+- [ ] Read arguments from CLI insted of input loop
+- [ ] Deployment
+  - Only local running for now.
+  - It is cumbersome that the user has to register an API application in order
+    to run this for themself.
 
 ## Further work
 
