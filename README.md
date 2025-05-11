@@ -27,7 +27,7 @@ On 11.5, 5 songs were added. They are:
 (3) Exit
 > 2
 Will do by id
-What track id? $0FvFAct92X30IlGGlk6Bck
+What track id? >0FvFAct92X30IlGGlk6Bck
 OK, track id 0FvFAct92X30IlGGlk6Bck
 That is Sædfuck
 Res: 2 playlists

@@ -54,7 +54,7 @@ def by_id() -> None:
 
     # test_track_id = "4KuUMa7zmUzVWrDyzf2eaL" # King gus 2018
 
-    track_id = input("What track id? $")
+    track_id = input("What track id? >")
     # track_id = test_track_id
     print("OK, track id", track_id)
 
