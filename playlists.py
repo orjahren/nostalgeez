@@ -12,11 +12,11 @@ from fetchers import fetch_my_playlists, fetch_tracks_by_url
 memory = Memory("/tmp/nostalgeez-cache", verbose=0)
 
 # TODO: Typing of playlists
-type Track = any
-type Playlist = any
+# type Track = any
+# type Playlist = any
 
 
-def get_unique_tracks(all_tracks) -> List[Track]:
+def get_unique_tracks(all_tracks) -> List[any]:
     # TODO: Refactor
     s = set()
     unknown_name = []
@@ -84,7 +84,7 @@ def print_playlist_names(playlists):
 
 
 @memory.cache
-def playlist_contains_track(playlist, track_id) -> Optional[Track]:
+def playlist_contains_track(playlist, track_id) -> any:
     # print(playlist)
 
     tracks = fetch_tracks_by_url(playlist["tracks"]["href"])
@@ -98,7 +98,7 @@ def playlist_contains_track(playlist, track_id) -> Optional[Track]:
 
 
 @memory.cache
-def get_playlists_by_track_id(track_id: str) -> List[Playlist]:
+def get_playlists_by_track_id(track_id: str) -> List[any]:
     my_playlists = fetch_my_playlists()
     res = []
     for playlist in my_playlists:
@@ -111,7 +111,7 @@ def get_playlists_by_track_id(track_id: str) -> List[Playlist]:
 
 
 @memory.cache
-def tracks_playlist_got_on_date(playlist: Playlist,  date: datetime.date) -> List[Track]:
+def tracks_playlist_got_on_date(playlist: any,  date: datetime.date) -> List[any]:
     # print(playlist)
 
     tracks = fetch_tracks_by_url(playlist["tracks"]["href"])
@@ -125,7 +125,7 @@ def tracks_playlist_got_on_date(playlist: Playlist,  date: datetime.date) -> Lis
     return res
 
 
-def get_filtered_playlists_by_date(date: datetime.date) -> List[Playlist]:
+def get_filtered_playlists_by_date(date: datetime.date) -> List[any]:
     my_playlists = fetch_my_playlists()
     res = []
     for playlist in my_playlists:

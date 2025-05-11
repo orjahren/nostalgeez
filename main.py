@@ -10,7 +10,7 @@ modes = [("By date", "Provide a date and get what songs you added on that date",
 
 def print_menu():
     for i, (name, desc, _) in enumerate(modes):
-        print(f"({i + 1}) {name} {desc and f"- {desc}"}")
+        print(f"({i + 1}) {name} - {desc}")
 
     return True
 
@@ -45,7 +45,7 @@ def by_date() -> None:
         f"On {date.day}.{date.month}, {len(playlists)} songs were added. They are:")
     for playlist, track in playlists:
         print(
-            f"\t{track["track"]["name"]} -> {playlist["name"]} ({track["added_at"]})")
+            f"\t{track['track']['name']} -> {playlist['name']} ({track['added_at']})")
     print("\n")
 
 
@@ -66,7 +66,7 @@ def by_id() -> None:
     print("Res:", len(playlists), "playlists")
 
     for i, (playlist, added_at) in enumerate(playlists):
-        print(f"[{i + 1}] {playlist["name"]} -> {added_at}")
+        print(f"[{i + 1}] {playlist['name']} -> {added_at}")
     print("\n\n")
 
 
@@ -85,7 +85,7 @@ def test():
         print("Res:", len(playlists), "playlists")
 
         for i, (playlist, added_at) in enumerate(playlists):
-            print(f"[{i}] {playlist["name"]} -> {added_at}")
+            print(f"[{i}] {playlist['name']} -> {added_at}")
 
 
 if __name__ == "__main__":

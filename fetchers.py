@@ -48,7 +48,7 @@ def fetch_artist(artist_id: str) -> object:
     # TODO: Error handling
     assert r.ok, f"Error fetching artist {artist_id} -> status {r}"
 
-    print(f"*** Fetched artist {r.json()["name"]} ***", file=sys.stderr)
+    print(f"*** Fetched artist {r.json()['name']} ***", file=sys.stderr)
 
     return r.json()
 
@@ -62,7 +62,7 @@ def fetch_my_playlists(get_all: bool = True) -> object:
     })
 
     # TODO: Error handling
-    assert r.ok, f"Error fetching my playlists -> status {r}, {r.json()["error"]["message"]} (you may need to reauthenticate in the browser)"
+    assert r.ok, f"Error fetching my playlists -> status {r}, {r.json()['error']['message']} (you may need to reauthenticate in the browser)"
 
     # TODO: This should be heavily refactored.
     resp = r.json()
@@ -124,7 +124,7 @@ def fetch_track_by_id(track_id: str):
         "Authorization": f"Bearer {access_token}"
     })
     # TODO: Error handling
-    assert r.ok, f"Error fetching track -> status {r}, {r.json()["error"]["message"]}"
+    assert r.ok, f"Error fetching track -> status {r}, {r.json()['error']['message']}"
 
     # print(r.json())
     print(f"*** Fetched track ***", file=sys.stderr)
