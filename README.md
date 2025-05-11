@@ -58,6 +58,7 @@ The application is written without using generative artificial intelligence.
   - flask (basic webserver for auth)
   - requests_oauthlib (auth)
   - joblib (caching)
+  - python-dateutil (date helpers)
 - Spotify API application
   - Claim: Web API
   - Callback URL must match whatever is in [web_client.py](./web_client.py)

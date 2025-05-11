@@ -4,3 +4,4 @@ dotenv
 flask
 requests_oauthlib
 joblib
+python-dateutil
