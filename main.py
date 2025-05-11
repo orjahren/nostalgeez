@@ -52,10 +52,10 @@ def by_date() -> None:
 def by_id() -> None:
     print("Will do by id")
 
-    test_track_id = "4KuUMa7zmUzVWrDyzf2eaL"
+    # test_track_id = "4KuUMa7zmUzVWrDyzf2eaL" # King gus 2018
 
-    # track_id = input("What track id?")
-    track_id = test_track_id
+    track_id = input("What track id? $")
+    # track_id = test_track_id
     print("OK, track id", track_id)
 
     track_name = get_track_name_by_id(track_id)
@@ -66,9 +66,8 @@ def by_id() -> None:
     print("Res:", len(playlists), "playlists")
 
     for i, (playlist, added_at) in enumerate(playlists):
-        print(f"[{i}] {playlist["name"]} -> {added_at}")
-
-    pass
+        print(f"[{i + 1}] {playlist["name"]} -> {added_at}")
+    print("\n\n")
 
 
 def test():
