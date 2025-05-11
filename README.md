@@ -47,6 +47,8 @@ Res: 2 playlists
 - Given a track, find when it was added to which of your playlists
 - Given a date, find what songs you added to which playlists accross years
 
+The application is written without using generative artificial intelligence.
+
 ## Dependencies
 
 - Python3 (`pip install -r requirements.txt`)
