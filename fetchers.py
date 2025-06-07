@@ -1,7 +1,6 @@
 import json
 import requests
 import sys
-from functools import lru_cache
 from joblib import Memory, expires_after
 
 from config import get_api_client
@@ -128,6 +127,21 @@ def fetch_track_by_id(track_id: str):
 
     # print(r.json())
     print(f"*** Fetched track ***", file=sys.stderr)
+
+    return r.json()
+
+
+def fetch_available_play_devices():
+    endpoint = "/me/player/devices"
+    user_token = get_user_token()
+
+    print(f"Fetching available devices", file=sys.stderr)
+    url = BASE_URL + endpoint
+    r = requests.get(url, headers={
+        "Authorization": f"Bearer {user_token}"
+    })
+    # TODO: Error handling
+    assert r.ok, f"Error fetching devices -> status {r}, {r.json()["error"]["message"]}"
 
     return r.json()
 

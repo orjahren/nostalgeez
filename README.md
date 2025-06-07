@@ -138,6 +138,8 @@ You can see an example output [above](#nostalgeez).
   - E.g. "these are your most played [easter, summer, xmas] songs"
 - [ ] Clearify Windows support?
   - [ ] Test on Windows. Might just work.
+- [ ] Play songs
+  - [ ] Create an ad hoc playlist?
 
 ### Tech oriented
 

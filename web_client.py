@@ -19,7 +19,9 @@ CLIENT_ID, CLIENT_SECRET = get_api_client()
 
 SCOPE = [
     "user-read-email",
-    "playlist-read-collaborative"
+    "playlist-read-collaborative",
+    "user-read-playback-state",
+    "user-modify-playback-state"
 ]
 
 
