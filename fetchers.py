@@ -15,7 +15,7 @@ BASE_URL = f"https://api.spotify.com/v1"
 @memory.cache(cache_validation_callback=expires_after(seconds=3600))
 def _fetch_access_token():
     CLIENT_ID, CLIENT_SECRET = get_api_client()
-    assert CLIENT_ID and CLIENT_SECRET, "Dotenv config not properly laoded."
+    assert CLIENT_ID and CLIENT_SECRET, "Dotenv config not properly loaded."
 
     print("Fetching access token from net", file=sys.stderr)
     res = requests.post(
